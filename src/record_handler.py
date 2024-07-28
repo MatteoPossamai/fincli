@@ -58,7 +58,7 @@ class RecordHandler:
         self.records.sort(key=lambda x: x.date)
 
     def list_records(self, num: int) -> list[Record]:
-        return self.records[:num].copy()
+        return self.records[-num:].copy()
 
     def add_record(self, conf: Config) -> None:
         file = conf.files[conf.add_attributes[0]]
