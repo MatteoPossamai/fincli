@@ -16,10 +16,6 @@ if __name__ == "__main__":
     match args[1]:
         case "add":
             print("Adding a transaction...")
-            if len(args) < 3:
-                print("Insert type of transaction")
-                exit(1)
-            transaction_type = args[2]
             RH.add_record(CONF)
             print("Transaction added")
         case "list":

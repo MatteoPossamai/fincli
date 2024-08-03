@@ -13,6 +13,8 @@ class Config:
     custom_date: datetime.datetime = datetime.date.today()
     currency: str = "GBP"
     add_attributes: list[str] = []
+    category: str = ""
+    report_transaction_type: str = "all"
 
     def __init__(self, args: list[str]) -> None:
         for i in range(2, len(args)):
@@ -39,6 +41,12 @@ class Config:
                 i += 1
             elif arg == "--currency":
                 self.currency = args[i + 1]
+                i += 1
+            elif arg == "--category":
+                self.category = args[i + 1]
+                i += 1
+            elif arg == "--tt":
+                self.report_transaction_type = args[i + 1]
                 i += 1
             elif arg == "--files":
                 idx = i + 1
