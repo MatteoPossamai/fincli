@@ -40,7 +40,7 @@ class Record:
     def to_list(self):
         basics = [
             self.id,
-            self.date,
+            self.date.strftime("%Y-%m-%d"),
             self.category,
             self.issuer,
             self.amount,
@@ -102,7 +102,7 @@ class RecordHandler:
         data = self._read_from_file(conf.source_path + file + "s.csv", file)
         new_record = Record(
             id=len(data),
-            date=conf.custom_date,
+            date=conf.default_end_date,
             category=category,
             amount=float(amount),
             currency=currency if currency in ACCEPTED_CURRENCIES else conf.currency,
