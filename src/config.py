@@ -6,11 +6,9 @@ DATE_FORMAT = "%Y-%m-%d"
 class Config:
 
     source_path: str = "/home/matteopossamai/Dropbox/personal_data/"
-    files: dict[str, str] = {"expense": "expenses.json", "earnings": "earnings.json"}
-    transaction_num: int = 10
-    default_start_date: datetime.date = datetime.date.today() - datetime.timedelta(days=365)
-    default_end_date: datetime.date = datetime.date.today()
-    custom_date: datetime.datetime = datetime.date.today()
+    files: dict[str, str] = {"expense": "expenses.json", "earnings": "incomes.json"}
+    default_start_date: datetime.datetime = datetime.datetime.now() - datetime.timedelta(days=100 * 365)
+    default_end_date: datetime.datetime = datetime.datetime.now()
     currency: str = "GBP"
     add_attributes: list[str] = []
     category: str = ""
@@ -27,17 +25,11 @@ class Config:
                 print(args[i + 1])
                 print(f"Cannot end with argument {args[i + 1]}")
                 exit(1)
-            elif arg == "--transaction-num":
-                self.transaction_num = int(args[i + 1])
-                i += 1
             elif arg == "--start-date":
-                self.default_start_date = datetime.datetime.strptime(args[i + 1], DATE_FORMAT).date()
+                self.default_start_date = datetime.datetime.strptime(args[i + 1], DATE_FORMAT)
                 i += 1
             elif arg == "--end-date":
-                self.default_end_date = datetime.datetime.strptime(args[i + 1], DATE_FORMAT).date()
-                i += 1
-            elif arg == "--date":
-                self.custom_date = datetime.datetime.strptime(args[i + 1], DATE_FORMAT).date()
+                self.default_end_date = datetime.datetime.strptime(args[i + 1], DATE_FORMAT)
                 i += 1
             elif arg == "--currency":
                 self.currency = args[i + 1]
